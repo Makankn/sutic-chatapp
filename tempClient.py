@@ -16,7 +16,7 @@ CHATCOLOR = '#061433'
 BUTTONCOLOR = '#1f6eb8'
 WHITE = "white"
 FONT = ("Helvetica", 17)
-BUTTON_FONT = ("Helvetica", 20)
+BUTTON_FONT = ("Helvetica", 14)
 SMALL_FONT = ("Helvetica", 13)
 
 # Creating a socket object
@@ -122,7 +122,7 @@ usernameTextbox = tk.Entry(
 usernameTextbox.pack(side=tk.LEFT)
 
 usernameButton = tk.Button(
-    topFrame, text="Join", font=BUTTON_FONT, bg=BUTTONCOLOR, fg=WHITE, command=connect)
+    topFrame, text="Join", font=BUTTON_FONT, bg=BUTTONCOLOR, fg=WHITE, command=connect,width=5)
 usernameButton.pack(side=tk.LEFT, padx=15)
 
 messageTextbox = tk.Entry(bottom_frame, font=FONT,
@@ -131,7 +131,8 @@ messageTextbox.pack(side=tk.LEFT, padx=10)
 
 message_button = tk.Button(bottom_frame, text="Send", font=BUTTON_FONT,
                            bg=BUTTONCOLOR, fg=WHITE, command=send_message)
-message_button.pack(side=tk.LEFT, padx=10)
+
+message_button.pack(side=tk.LEFT, padx=20)
 message_button.bind_all("<Return>", send_message)
 
 message_box = scrolledtext.ScrolledText(
@@ -150,7 +151,7 @@ def browsefunc():
 
 browsebutton = tk.Button(bottom_frame, text="Browse", font=BUTTON_FONT,
                          bg=BUTTONCOLOR, fg=WHITE, command=browsefunc)
-browsebutton.pack()
+browsebutton.pack(side=tk.LEFT, padx=30)
 
 
 def listen_for_messages_from_server(client):
