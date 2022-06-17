@@ -1,7 +1,6 @@
 # import required modules
 import socket
 import threading
-from random import choice
 import tkinter as tk
 from tkinter import scrolledtext
 from tkinter import messagebox
@@ -33,10 +32,10 @@ def play(st='message'):
 
     if st == 'message':
 
-        messageNotif = mixer.Sound('effect.wav')
+        messageNotif = mixer.Sound('assets/effect.wav')
         messageNotif.play()
     else:
-        joinNotif = mixer.Sound('welcome.wav')
+        joinNotif = mixer.Sound('assets/welcome.wav')
         joinNotif.play()
 
 
@@ -97,7 +96,7 @@ root = tk.Tk()
 root.geometry("600x600")
 root.title("Chat App")
 root.resizable(False, False)
-icon = tk.PhotoImage(file='icon.png')
+icon = tk.PhotoImage(file='assets/icon.png')
 root.iconphoto(False, icon)
 
 
