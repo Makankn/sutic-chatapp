@@ -3,7 +3,7 @@ import threading
 
 
 # Two constant variable for host and port number
-HOST = '192.168.43.23'
+HOST = '172.16.132.130'
 PORT = 5700
 FORMAT = 'utf-8'
 LIMIT = 5
