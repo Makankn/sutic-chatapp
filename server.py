@@ -3,7 +3,7 @@ import threading
 
 
 # Two constant variable for host and port number
-HOST = '192.168.1.4'
+HOST = socket.gethostbyname(socket.gethostname())
 PORT = 5700
 FORMAT = 'utf-8'
 LIMIT = 5

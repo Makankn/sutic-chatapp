@@ -9,7 +9,7 @@ from pygame import mixer
 
 #all the constants that we use are here, for IP, colors and fonts
 #you can change color of whole program in a seconde using this varibales
-HOST = '192.168.1.4'
+HOST = socket.gethostbyname(socket.gethostname())
 PORT = 5700
 
 BARCOLOR = '#14497a'
@@ -87,7 +87,7 @@ def connect():
 
 #this funtction wil send each indivisual client to our server then server will reply with
 #sending the message to all other clients.
-def send_message(file="",event=''):
+def send_message(event='', file=""):
     message = messageTextbox.get()
     if file:
         message = file
