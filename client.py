@@ -9,7 +9,7 @@ from pygame import mixer
 
 #all the constants that we use are here, for IP, colors and fonts
 #you can change color of whole program in a seconde using this varibales
-HOST = '172.16.132.130'
+HOST = '192.168.1.4'
 PORT = 5700
 
 BARCOLOR = '#14497a'
@@ -87,9 +87,12 @@ def connect():
 
 #this funtction wil send each indivisual client to our server then server will reply with
 #sending the message to all other clients.
-def send_message(event=''):
+def send_message(file="",event=''):
     message = messageTextbox.get()
-    if message != '':
+    if file:
+        message = file
+        client.sendall(message.encode())
+    elif message != '':
         client.sendall(message.encode())
         messageTextbox.delete(0, len(message))
     else:
@@ -156,8 +159,7 @@ def browsefunc():
     filename = filedialog.askopenfilename()
     username = usernameTextbox.get()
     formatt = filename.split('.')[1]
-    add_message(f" {37*' '}[SERVER] sent successfully")
-    add_message(f"[{username}] {filename}", format=formatt)
+    send_message(file=f"{username}~{filename}~{formatt}")
 
 
 browsebutton = tk.Button(bottom_frame, text="Browse", font=BUTTON_FONT,
@@ -169,14 +171,21 @@ browsebutton.pack()
 #so we can easily say that no matter what happens our server is always on
 def listen_for_messages_from_server(client):
 
-    while 1:
+    while True:
         message = client.recv(2048).decode('utf-8')
+        tempFile = message.split('~')[0]
         if message != '':
-            username = message.split("~")[0]
-            content = message.split('~')[1]
-
-            add_message(f"[{username}] {content}")
-            print(f"[{username}] {content}")
+            if tempFile == 'file':
+                username=message.split('~')[1]
+                filePath=message.split('~')[2]
+                formatt=message.split('~')[3]
+                add_message(f"[{username}] {filePath}", format=formatt)
+                
+            else:
+                username = message.split("~")[0]
+                content = message.split('~')[1]
+                add_message(f"[{username}] {content}")
+                print(f"[{username}] {content}")
 
         else:
             messagebox.showerror(

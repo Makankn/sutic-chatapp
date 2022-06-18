@@ -3,7 +3,7 @@ import threading
 
 
 # Two constant variable for host and port number
-HOST = '172.16.132.130'
+HOST = '192.168.1.4'
 PORT = 5700
 FORMAT = 'utf-8'
 LIMIT = 5
@@ -17,6 +17,10 @@ def MSGlistener(client, userName):
 
         if not tempMSG:
             print(f'the msg from User {userName} is empty!')
+            
+        elif '~' in tempMSG:
+            MSG ='file'  +'~' + tempMSG
+            MSGsenderAll(MSG)
 
         else:
             MSG = userName + '~' + tempMSG
