@@ -72,7 +72,8 @@ def main():
 
     while True:
 
-        # Wait for an incoming connection. Return a new socket representing the connection, and the address of the client. For IP sockets, the address info is a pair (hostaddr, port).
+        # Wait for an incoming connection. Return a new socket representing the connection, 
+        # and the address of the client. For IP sockets, the address info is a pair (hostaddr, port).
         client, address = serverSock.accept()
         print(f'Client {address[0]} has been connected with port {address[1]}')
 
